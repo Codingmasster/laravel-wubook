@@ -65,9 +65,9 @@ class WuBookReservations extends WuBookApi
      * @param int $mark
      * @return mixed
      */
-    public function fetch_new_bookings($ancillary = 0, $mark = 1)
+    public function fetch_booking_n($ancillary = 1, $mark = 1)
     {
-        return $this->call_method($this->token, 'fetch_new_bookings', [$ancillary, $mark]);
+        return $this->call_method($this->token, 'fetch_booking_n', [$ancillary, $mark]);
     }
 
     /**
@@ -120,6 +120,17 @@ class WuBookReservations extends WuBookApi
         return $this->call_method($this->token, 'fetch_booking', [$rcode, $ancillary]);
     }
 
+    /**
+     * http://tdocs.wubook.net/wired/fetch.html#fetch_booking
+     *
+     * @param string $rcode
+     * @param boolean $ancillary
+     * @return mixed
+     */
+    public function fetch_ccard($rcode, $pwd)
+    {
+        return $this->call_method($this->token, 'fetch_ccard', [$rcode, $pwd]);
+    }
     /**
      * http://tdocs.wubook.net/wired/fetch.html#get_fount_symbols
      *
