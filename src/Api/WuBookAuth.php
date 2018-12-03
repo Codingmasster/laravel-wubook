@@ -62,14 +62,26 @@ class WuBookAuth
      *
      * @return string token
      */
-    public function acquire_token()
+    public function acquire_token($owner)
     {
+
+         if($owner==null){
+              $data = [
+                $this->config['username'],
+                $this->config['password'],
+                $this->config['provider_key']
+            ];
+         
+        }else
+        {
+           $data = [
+                $owner['username'],
+                $owner['password'],
+                $owner['provider_key']
+            ];
+         
+        }
         // Setup request data
-        $data = [
-            $this->config['username'],
-            $this->config['password'],
-            $this->config['provider_key']
-        ];
 
         try {
             // Retrieve response
