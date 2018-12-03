@@ -178,12 +178,20 @@ class WuBookManager
      * @param string $token
      * @return IlGala\LaravelWubook\Api\WuBookPrices
      */
-    public function reservations($token = null)
+    public function reservations($owner = NULL ,$token = null)
     {
         // Setup client
         $client = new Client(self::ENDPOINT, null, new NativeParser(), new NativeSerializer());
 
-        return new WuBookReservations($this->config, $this->cache, $client, $token);
+        if($owner==null){
+            return new WuBookReservations($this->config, $this->cache, $client, $token);
+        }else
+        {   
+            return new WuBookReservations($owner, $this->cache, $client, $token);
+        }
+
+
+        
     }
 
     /**
